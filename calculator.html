@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDEE & Macro Calculator | Apex Performance Coaching</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0B0E14] text-[#F1F5F9] font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-[#22D3EE] selection:text-[#0B0E14]">
+
+    <!-- Sticky Navigation -->
+    <header class="sticky top-0 z-50 bg-[#0B0E14]/85 backdrop-blur-md border-b border-[#1E293B]">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#22D3EE] to-[#3B82F6] flex items-center justify-center font-black text-[#0B0E14] text-xl shadow-lg shadow-[#22D3EE]/20">
+                    AX
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold tracking-wider text-white text-lg">APEX PERFORMANCE</span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#22D3EE] font-semibold">Elite Coaching</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#CBD5E1]">
+                <a href="index.html" class="hover:text-[#22D3EE] transition">Home</a>
+                <a href="programs.html" class="hover:text-[#22D3EE] transition">Programs</a>
+                <a href="calculator.html" class="text-[#22D3EE] font-semibold transition">Calculators</a>
+                <a href="index.html#results" class="hover:text-[#22D3EE] transition">Transformations</a>
+                <a href="index.html#about" class="hover:text-[#22D3EE] transition">Coach Faizan</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="index.html#contact" class="bg-gradient-to-r from-[#22D3EE] to-[#3B82F6] text-[#0B0E14] font-bold px-6 py-2.5 rounded-full text-sm hover:opacity-90 transition shadow-lg shadow-[#22D3EE]/25">
+                    Book Consultation
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="menu-btn" class="md:hidden p-2 text-white focus:outline-none" aria-label="Toggle menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#111827] border-b border-[#1F2937] px-6 py-6 flex flex-col gap-4 text-base">
+            <a href="index.html" class="text-[#CBD5E1]">Home</a>
+            <a href="programs.html" class="text-[#CBD5E1]">Programs</a>
+            <a href="calculator.html" class="text-[#22D3EE] font-medium">Calculators</a>
+            <a href="index.html#results" class="text-[#CBD5E1]">Transformations</a>
+            <a href="index.html#contact" class="bg-[#22D3EE] text-[#0B0E14] font-bold py-3 rounded-xl text-center mt-2">Book Consultation</a>
+        </div>
+    </header>
+
+    <!-- Calculator Section -->
+    <section class="py-16 max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <span class="text-[#22D3EE] text-xs font-bold uppercase tracking-widest">FREE ATHLETE TOOL</span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">TDEE & Macro Calculator</h1>
+            <p class="text-[#94A3B8] text-sm mt-3">Calculate your daily caloric maintenance and custom macronutrient splits for fat loss or muscle gain.</p>
+        </div>
+
+        <div class="bg-[#111827] border border-[#1F2937] rounded-3xl p-8 sm:p-12 shadow-2xl">
+            <form id="calc-form" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-semibold text-[#CBD5E1] uppercase tracking-wider mb-2">Gender</label>
+                    <select id="calc-gender" class="w-full bg-[#0B0E14] border border-[#334155] rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#22D3EE]">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#CBD5E1] uppercase tracking-wider mb-2">Goal</label>
+                    <select id="calc-goal" class="w-full bg-[#0B0E14] border border-[#334155] rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#22D3EE]">
+                        <option value="cut">Fat Loss (-20% Deficit)</option>
+                        <option value="maintain">Maintain Weight</option>
+                        <option value="bulk">Muscle Gain (+15% Surplus)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#CBD5E1] uppercase tracking-wider mb-2">Weight (kg)</label>
+                    <input type="number" id="calc-weight" value="78" required class="w-full bg-[#0B0E14] border border-[#334155] rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#22D3EE]">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#CBD5E1] uppercase tracking-wider mb-2">Height (cm)</label>
+                    <input type="number" id="calc-height" value="178" required class="w-full bg-[#0B0E14] border border-[#334155] rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#22D3EE]">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#CBD5E1] uppercase tracking-wider mb-2">Age (years)</label>
+                    <input type="number" id="calc-age" value="28" required class="w-full bg-[#0B0E14] border border-[#334155] rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#22D3EE]">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#CBD5E1] uppercase tracking-wider mb-2">Activity Level</label>
+                    <select id="calc-activity" class="w-full bg-[#0B0E14] border border-[#334155] rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#22D3EE]">
+                        <option value="1.2">Sedentary (desk job, little exercise)</option>
+                        <option value="1.375">Lightly Active (light exercise 1-3 days/wk)</option>
+                        <option value="1.55" selected>Moderately Active (exercise 3-5 days/wk)</option>
+                        <option value="1.725">Very Active (hard exercise 6-7 days/wk)</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2 pt-4">
+                    <button type="button" id="calc-btn" class="w-full bg-[#22D3EE] hover:bg-[#06B6D4] text-[#0B0E14] font-extrabold py-4 rounded-xl transition shadow-lg shadow-[#22D3EE]/20 text-base">
+                        Calculate My Target Macros
+                    </button>
+                </div>
+            </form>
+
+            <!-- Results Box (Hidden Initially) -->
+            <div id="calc-results" class="hidden mt-10 pt-8 border-t border-[#1E293B]">
+                <h3 class="text-xl font-bold text-white mb-6 text-center">Your Custom Apex Target Breakdown</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="bg-[#0B0E14] p-4 rounded-2xl border border-[#334155]">
+                        <div class="text-xs text-[#94A3B8] uppercase">Daily Calories</div>
+                        <div id="res-cals" class="text-2xl font-black text-[#22D3EE] mt-2 font-['JetBrains_Mono']">2450</div>
+                        <div class="text-[10px] text-[#64748B] mt-1">kcal / day</div>
+                    </div>
+                    <div class="bg-[#0B0E14] p-4 rounded-2xl border border-[#334155]">
+                        <div class="text-xs text-[#94A3B8] uppercase">Protein</div>
+                        <div id="res-protein" class="text-2xl font-black text-white mt-2 font-['JetBrains_Mono']">175g</div>
+                        <div class="text-[10px] text-[#64748B] mt-1">muscle repair</div>
+                    </div>
+                    <div class="bg-[#0B0E14] p-4 rounded-2xl border border-[#334155]">
+                        <div class="text-xs text-[#94A3B8] uppercase">Carbs</div>
+                        <div id="res-carbs" class="text-2xl font-black text-white mt-2 font-['JetBrains_Mono']">220g</div>
+                        <div class="text-[10px] text-[#64748B] mt-1">training fuel</div>
+                    </div>
+                    <div class="bg-[#0B0E14] p-4 rounded-2xl border border-[#334155]">
+                        <div class="text-xs text-[#94A3B8] uppercase">Fats</div>
+                        <div id="res-fats" class="text-2xl font-black text-white mt-2 font-['JetBrains_Mono']">70g</div>
+                        <div class="text-[10px] text-[#64748B] mt-1">hormone health</div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <a href="index.html#contact" class="inline-block bg-[#1E293B] hover:bg-[#22D3EE] hover:text-[#0B0E14] text-white font-bold px-8 py-3.5 rounded-full text-sm transition">
+                        Want Coach Faizan to customize this further? Book a call &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#080B10] border-t border-[#1E293B] py-16 px-6 mt-20">
+        <div class="max-w-7xl mx-auto text-center text-xs text-[#64748B]">
+            &copy; 2025 Apex Performance Coaching by Faizan Ahmed. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
